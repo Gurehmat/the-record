@@ -14,7 +14,7 @@ export function InputMethodToggle({ value, onChange }: InputMethodToggleProps) {
         <button
           type="button"
           onClick={() => onChange('voice')}
-          className={`flex items-center justify-center gap-2 border-r-[3px] border-ink px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.2em] ${
+          className={`flex min-h-11 items-center justify-center gap-1 border-r-[3px] border-ink px-2 py-3 text-center font-mono text-[10px] font-bold uppercase tracking-[0.08em] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-[0.2em] ${
             value === 'voice' ? 'bg-ink text-white' : 'bg-parchment text-ink'
           }`}
         >
@@ -24,7 +24,7 @@ export function InputMethodToggle({ value, onChange }: InputMethodToggleProps) {
         <button
           type="button"
           onClick={() => onChange('text')}
-          className={`flex items-center justify-center gap-2 px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.2em] ${
+          className={`flex min-h-11 items-center justify-center gap-1 px-2 py-3 text-center font-mono text-[10px] font-bold uppercase tracking-[0.08em] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-[0.2em] ${
             value === 'text' ? 'bg-ink text-white' : 'bg-parchment text-ink'
           }`}
         >

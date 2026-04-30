@@ -25,15 +25,15 @@ export function LiveTranscriptPanel({ messages }: LiveTranscriptPanelProps) {
   }, [messages])
 
   return (
-    <section className="flex min-h-[240px] flex-1 flex-col border-[3px] border-ink bg-parchment shadow-brutal lg:min-h-0">
-      <header className="flex items-center justify-between border-b-[3px] border-ink bg-[#E6E1D8] px-3 py-3">
+    <section className="flex min-h-[220px] flex-1 flex-col border-[3px] border-ink bg-parchment shadow-brutal md:min-h-0">
+      <header className="flex items-center justify-between gap-2 border-b-[3px] border-ink bg-[#E6E1D8] px-3 py-3">
         <div className="flex items-center gap-2">
           <List className="h-5 w-5 text-ink" strokeWidth={2.8} />
           <p className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-ink">
             Live Transcript
           </p>
         </div>
-        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink/55">
+        <p className="hidden shrink-0 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink/55 sm:block">
           Auto-scroll on
         </p>
       </header>
@@ -50,7 +50,7 @@ export function LiveTranscriptPanel({ messages }: LiveTranscriptPanelProps) {
             {messages.map((message) => (
               <article
                 key={message.id}
-                className={`border-l-[4px] px-3 py-2 font-mono text-sm leading-relaxed text-ink ${
+                className={`wrap-break-word border-l-[4px] px-3 py-2 font-mono text-xs leading-relaxed text-ink sm:text-sm ${
                   message.isFlagged
                     ? 'border-warning bg-[#FFFBEB]'
                     : message.speakerId === 'speaker1'
@@ -62,7 +62,7 @@ export function LiveTranscriptPanel({ messages }: LiveTranscriptPanelProps) {
                   [{formatTimestamp(message.timestamp)}]
                 </span>{' '}
                 <span
-                  className={`mr-2 inline-flex border border-ink px-1.5 py-[1px] text-[10px] font-bold uppercase tracking-[0.12em] ${
+                  className={`mr-2 inline-flex max-w-full align-middle wrap-break-word border border-ink px-1.5 py-[1px] text-[10px] font-bold uppercase tracking-[0.08em] sm:tracking-[0.12em] ${
                     message.speakerId === 'speaker1'
                       ? 'bg-ink text-white'
                       : 'bg-parchment text-ink'

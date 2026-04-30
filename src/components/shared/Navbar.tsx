@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { History, Landmark, PenLine, Rss, Settings } from 'lucide-react'
 
 import { useDebateStore } from '../../store/useDebateStore'
 import type { DebateMode, DebateState } from '../../types'
@@ -65,14 +64,14 @@ export function Navbar({ mode, debateState }: NavbarProps) {
   const endSessionControl =
     debateState === 'live' ? (
       showEndConfirm ? (
-        <div className="flex items-center gap-2">
+        <div className="flex min-w-0 flex-wrap items-center justify-end gap-1 sm:gap-2">
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-accent">
             END PROCEEDINGS?
           </span>
           <button
             type="button"
             onClick={handleConfirmEndSession}
-            className="border-2 border-accent bg-accent px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white"
+            className="min-h-11 border-2 border-accent bg-accent px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white sm:min-h-0 sm:py-1"
           >
             CONFIRM
           </button>
@@ -80,7 +79,7 @@ export function Navbar({ mode, debateState }: NavbarProps) {
             type="button"
             aria-label="Cancel end session"
             onClick={() => setShowEndConfirm(false)}
-            className="border-2 border-accent bg-transparent px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-accent hover:bg-accent hover:text-white"
+            className="min-h-11 border-2 border-accent bg-transparent px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-accent hover:bg-accent hover:text-white sm:min-h-0 sm:px-2 sm:py-1"
           >
             X
           </button>
@@ -89,7 +88,7 @@ export function Navbar({ mode, debateState }: NavbarProps) {
         <button
           type="button"
           onClick={() => setShowEndConfirm(true)}
-          className="border-2 border-accent bg-transparent px-4 py-1 font-mono text-xs font-bold uppercase tracking-[0.12em] text-accent transition-colors hover:bg-accent hover:text-white"
+          className="min-h-11 border-2 border-accent bg-transparent px-2 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-accent transition-colors hover:bg-accent hover:text-white sm:min-h-0 sm:px-4 sm:py-1 sm:text-xs sm:tracking-[0.12em]"
         >
           END SESSION
         </button>
@@ -99,21 +98,18 @@ export function Navbar({ mode, debateState }: NavbarProps) {
   if (isVerdict) {
     return (
       <header className="border-b-[3px] border-ink bg-parchment">
-        <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-4 px-4 py-3 sm:px-6">
-          <p className="font-display text-xl font-bold uppercase tracking-[0.18em] text-ink sm:text-2xl">
+        <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center px-3 py-2 sm:px-6 sm:py-3">
+          <p className="min-w-0 font-display text-lg font-bold uppercase tracking-[0.12em] text-ink sm:text-2xl sm:tracking-[0.18em]">
             THE RECORD
           </p>
 
-          <nav className="hidden items-center sm:flex">
+          <nav className="hidden items-center justify-center sm:flex">
             <span className="border-b-[3px] border-ink pb-1 font-mono text-xs font-bold uppercase tracking-[0.22em] text-ink">
               SESSION
             </span>
           </nav>
 
-          <div className="flex items-center gap-3">
-            <Landmark className="h-5 w-5 text-ink" strokeWidth={2.5} />
-            <History className="h-5 w-5 text-ink" strokeWidth={2.5} />
-          </div>
+          <div aria-hidden="true" />
         </div>
       </header>
     )
@@ -122,15 +118,12 @@ export function Navbar({ mode, debateState }: NavbarProps) {
   if (isLiveForum) {
     return (
       <header className="border-b-[3px] border-ink bg-ink">
-        <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-4 px-4 py-3 sm:px-6">
-          <p className="min-w-0 truncate font-display text-lg font-bold uppercase italic tracking-[0.08em] text-white sm:text-2xl">
-            THE RECORD // FORUM // SESSION 001
+        <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-2 px-3 py-2 sm:gap-4 sm:px-6 sm:py-3">
+          <p className="min-w-0 truncate font-display text-base font-bold uppercase italic tracking-[0.06em] text-white sm:text-2xl sm:tracking-[0.08em]">
+            THE RECORD <span className="hidden sm:inline">// FORUM // SESSION 001</span>
           </p>
 
           <nav className="hidden items-center gap-7 sm:flex">
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-white/70">
-              SESSION INFO
-            </span>
             <span className="border border-white/20 bg-white/10 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">
               INPUT: {inputMode.toUpperCase()}
             </span>
@@ -142,25 +135,11 @@ export function Navbar({ mode, debateState }: NavbarProps) {
             </span>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             {endSessionControl}
-            <div className="border border-white/60 bg-transparent px-3 py-[8px] font-mono text-xs font-bold uppercase tracking-[0.16em] text-white">
-              <span className="mr-2 text-accent">REC</span>ON RECORD
+            <div className="min-h-11 border border-white/60 bg-transparent px-2 py-[10px] font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white sm:min-h-0 sm:px-3 sm:py-[8px] sm:text-xs sm:tracking-[0.16em]">
+              <span className="text-accent sm:mr-2">REC</span><span className="hidden sm:inline">ON RECORD</span>
             </div>
-            <button
-              type="button"
-              aria-label="Notes"
-              className="inline-flex h-10 w-10 items-center justify-center border-2 border-white/50 bg-transparent text-accent transition-all duration-100 hover:bg-white/10"
-            >
-              <PenLine className="h-4 w-4" strokeWidth={2.5} />
-            </button>
-            <button
-              type="button"
-              aria-label="Feed"
-              className="inline-flex h-10 w-10 items-center justify-center border-2 border-white/50 bg-transparent text-accent transition-all duration-100 hover:bg-white/10"
-            >
-              <Rss className="h-4 w-4" strokeWidth={2.5} />
-            </button>
           </div>
         </div>
       </header>
@@ -170,18 +149,15 @@ export function Navbar({ mode, debateState }: NavbarProps) {
   if (isLiveRecord) {
     return (
       <header className="border-b-[3px] border-ink bg-ink">
-        <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-4 px-4 py-3 sm:px-6">
-          <p className="min-w-0 truncate font-display text-lg font-bold uppercase italic tracking-[0.08em] text-white sm:text-2xl">
+        <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-2 px-3 py-2 sm:gap-4 sm:px-6 sm:py-3">
+          <p className="min-w-0 truncate font-display text-base font-bold uppercase italic tracking-[0.06em] text-white sm:text-2xl sm:tracking-[0.08em]">
             THE RECORD{' '}
-            <span className="font-mono text-sm not-italic tracking-[0.16em] text-white/80 sm:text-base">
+            <span className="hidden font-mono text-sm not-italic tracking-[0.16em] text-white/80 sm:inline sm:text-base">
               // SESSION 001 // {formatDuration(recordElapsedMs)}
             </span>
           </p>
 
           <nav className="hidden items-center gap-7 md:flex">
-            <span className="border-b-[3px] border-white pb-1 font-mono text-xs font-bold uppercase tracking-[0.24em] text-white">
-              SESSION INFO
-            </span>
             <span className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-white/60">
               LOGS
             </span>
@@ -190,32 +166,18 @@ export function Navbar({ mode, debateState }: NavbarProps) {
             </span>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             {endSessionControl}
             <div
-              className={`border border-white/60 bg-transparent px-3 py-[8px] font-mono text-xs font-bold uppercase tracking-[0.16em] text-white ${
+              className={`min-h-11 border border-white/60 bg-transparent px-2 py-[10px] font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white sm:min-h-0 sm:px-3 sm:py-[8px] sm:text-xs sm:tracking-[0.16em] ${
                 isRecording ? 'record-on-air-pulse' : ''
               }`}
             >
-              <span className={`mr-2 ${isRecording ? 'text-accent' : 'text-white/40'}`}>
+              <span className={`${isRecording ? 'text-accent' : 'text-white/40'} sm:mr-2`}>
                 REC
               </span>
-              {isRecording ? 'ON RECORD' : 'PAUSED'}
+              <span className="hidden sm:inline">{isRecording ? 'ON RECORD' : 'PAUSED'}</span>
             </div>
-            <button
-              type="button"
-              aria-label="Settings"
-              className="inline-flex h-10 w-10 items-center justify-center border-2 border-white/50 bg-transparent text-white transition-all duration-100 hover:bg-white/10"
-            >
-              <Settings className="h-4 w-4" strokeWidth={2.5} />
-            </button>
-            <button
-              type="button"
-              aria-label="Session history"
-              className="inline-flex h-10 w-10 items-center justify-center border-2 border-white/50 bg-transparent text-white transition-all duration-100 hover:bg-white/10"
-            >
-              <History className="h-4 w-4" strokeWidth={2.5} />
-            </button>
           </div>
         </div>
       </header>
@@ -224,8 +186,8 @@ export function Navbar({ mode, debateState }: NavbarProps) {
 
   return (
     <header className="border-b-[3px] border-ink bg-parchment">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <p className="font-display text-xl font-bold uppercase tracking-[0.18em] text-ink sm:text-2xl">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-2 px-3 py-2 sm:gap-4 sm:px-6 sm:py-3">
+        <p className="min-w-0 font-display text-lg font-bold uppercase tracking-[0.12em] text-ink sm:text-2xl sm:tracking-[0.18em]">
           THE RECORD
         </p>
 
@@ -252,20 +214,6 @@ export function Navbar({ mode, debateState }: NavbarProps) {
 
         <div className="flex items-center gap-2">
           {endSessionControl}
-          <button
-            type="button"
-            aria-label="Notes"
-            className="inline-flex h-10 w-10 items-center justify-center border-[3px] border-ink bg-parchment text-ink shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none"
-          >
-            <PenLine className="h-4 w-4" strokeWidth={2.5} />
-          </button>
-          <button
-            type="button"
-            aria-label="Settings"
-            className="inline-flex h-10 w-10 items-center justify-center border-[3px] border-ink bg-parchment text-ink shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none"
-          >
-            <Settings className="h-4 w-4" strokeWidth={2.5} />
-          </button>
         </div>
       </div>
     </header>

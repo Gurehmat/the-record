@@ -24,12 +24,12 @@ export function SetupScreen() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 pb-10 pt-8 sm:px-6 sm:pt-10">
+    <main className="mx-auto w-full max-w-6xl px-4 pb-10 pt-6 sm:px-6 sm:pt-10">
       <section className="mb-8">
-        <h1 className="font-display text-4xl font-bold uppercase tracking-[0.14em] text-ink sm:text-5xl">
+        <h1 className="wrap-break-word font-display text-3xl font-bold uppercase tracking-[0.08em] text-ink sm:text-5xl sm:tracking-[0.14em]">
           INITIALIZE PROCEEDINGS
         </h1>
-        <p className="mt-2 font-mono text-xs font-bold uppercase tracking-[0.22em] text-ink sm:text-sm">
+        <p className="mt-2 wrap-break-word font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-ink sm:text-sm sm:tracking-[0.22em]">
           ESTABLISH DEBATE PARAMETERS AND SUBJECT MATTER.
         </p>
         <div className="mt-4 h-[3px] w-full bg-accent" />
@@ -64,7 +64,7 @@ export function SetupScreen() {
           type="button"
           disabled={!canBegin}
           onClick={handleBeginSession}
-          className="flex w-full items-center justify-center border-[3px] border-ink bg-ink px-6 py-4 font-mono text-sm font-bold uppercase tracking-[0.24em] text-white shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:bg-ink/60 disabled:text-white/70"
+          className="flex min-h-11 w-full items-center justify-center border-[3px] border-ink bg-ink px-4 py-4 text-center font-mono text-xs font-bold uppercase tracking-[0.14em] text-white shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:bg-ink/60 disabled:text-white/70 sm:px-6 sm:text-sm sm:tracking-[0.24em]"
         >
           BEGIN PROCEEDINGS →
         </button>

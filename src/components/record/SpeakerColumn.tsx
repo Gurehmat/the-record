@@ -31,11 +31,11 @@ function formatTimestamp(timestamp: number) {
 
 function AudioWaveform({ isActive }: { isActive: boolean }) {
   return (
-    <div className="flex h-16 items-end gap-2 border-b-[3px] border-ink pb-3">
+    <div className="flex h-10 items-end gap-1.5 border-b-[3px] border-ink pb-2 sm:h-16 sm:gap-2 sm:pb-3">
       {RECORD_WAVE_BARS.map((bar, index) => (
         <span
           key={`${bar.duration}-${index}`}
-          className="record-wave-bar w-3 bg-accent"
+          className="record-wave-bar w-2 bg-accent sm:w-3"
           data-active={isActive}
           style={{
             '--record-wave-duration': bar.duration,
@@ -75,13 +75,13 @@ export function SpeakerColumn({
   }, [credibilityScore])
 
   return (
-    <section className="flex min-h-[280px] flex-1 flex-col border-[3px] border-ink bg-parchment shadow-brutal lg:min-h-0">
-      <header className="flex items-start justify-between gap-3 border-b-[3px] border-ink px-5 py-3">
-        <h2 className="flex-1 whitespace-normal wrap-break-word font-display text-2xl font-bold uppercase leading-tight tracking-[0.14em] text-ink">
+    <section className="flex min-h-[280px] flex-1 flex-col border-[3px] border-ink bg-parchment shadow-brutal md:min-h-0">
+      <header className="flex items-start justify-between gap-2 border-b-[3px] border-ink px-3 py-3 sm:gap-3 sm:px-5">
+        <h2 className="min-w-0 flex-1 whitespace-normal wrap-break-word font-display text-xl font-bold uppercase leading-tight tracking-[0.08em] text-ink sm:text-2xl sm:tracking-[0.14em]">
           {speakerName}
         </h2>
         <div
-          className={`flex shrink-0 items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] ${
+          className={`flex shrink-0 items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-[0.08em] sm:gap-2 sm:text-xs sm:tracking-[0.18em] ${
             isActive ? 'text-verified' : 'text-ink/45'
           }`}
         >
@@ -95,11 +95,11 @@ export function SpeakerColumn({
         </div>
       </header>
 
-      <div className="shrink-0 px-5 pt-4">
+      <div className="shrink-0 px-3 pt-3 sm:px-5 sm:pt-4">
         <AudioWaveform isActive={isActive} />
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-5 py-2">
+      <div className="min-h-0 flex-1 overflow-y-auto px-3 py-2 sm:px-5">
         {messages.length === 0 && !hasInterimText ? (
           <div className="flex items-center justify-center border-2 border-dashed border-ink/35 bg-[#EFEFEF] px-3 py-2">
             <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-ink/50">
@@ -111,7 +111,7 @@ export function SpeakerColumn({
             {messages.map((message) => (
               <article
                 key={message.id}
-                className={`border-l-4 px-3 py-2 font-mono text-sm leading-relaxed text-ink ${
+                className={`wrap-break-word border-l-4 px-3 py-2 font-mono text-xs leading-relaxed text-ink sm:text-sm ${
                   message.isFlagged
                     ? 'border-warning bg-[#FFFBEB] font-semibold'
                     : message.id === latestMessageId
@@ -126,7 +126,7 @@ export function SpeakerColumn({
               </article>
             ))}
             {hasInterimText ? (
-              <article className="border-l-4 border-ink/25 bg-[#EFEFEF] px-3 py-2 font-mono text-sm italic leading-relaxed text-ink/50">
+              <article className="wrap-break-word border-l-4 border-ink/25 bg-[#EFEFEF] px-3 py-2 font-mono text-xs italic leading-relaxed text-ink/50 sm:text-sm">
                 {interimText}
               </article>
             ) : null}
@@ -134,9 +134,9 @@ export function SpeakerColumn({
         )}
       </div>
 
-      <footer className="flex shrink-0 justify-end px-5 pb-3">
+      <footer className="flex shrink-0 justify-end px-3 pb-3 sm:px-5">
         <div
-          className={`inline-flex items-center gap-2 border-[3px] border-ink px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.18em] ${
+          className={`inline-flex min-h-11 max-w-full items-center gap-2 wrap-break-word border-[3px] border-ink px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.08em] sm:px-4 sm:text-xs sm:tracking-[0.18em] ${
             isActive ? 'bg-ink text-white' : 'bg-parchment text-ink'
           } ${scoreChanged ? 'record-score-flash' : ''}`}
         >

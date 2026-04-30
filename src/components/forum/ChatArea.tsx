@@ -53,7 +53,7 @@ function MessageRow({
 
   return (
     <article
-      className={`border-l-4 px-4 py-3 ${
+      className={`border-l-4 px-3 py-3 md:px-4 ${
         isUser
           ? 'border-accent bg-transparent'
           : isPhilosopher
@@ -63,16 +63,16 @@ function MessageRow({
             : 'border-ink bg-parchment'
       }`}
     >
-      <div className="flex items-center gap-4">
-        <span className="border border-ink/25 bg-parchment px-2 py-1 font-mono text-xs font-semibold text-[#6B7280]">
+      <div className="flex min-w-0 flex-wrap items-center gap-2 md:gap-4">
+        <span className="shrink-0 border border-ink/25 bg-parchment px-2 py-1 font-mono text-[10px] font-semibold text-[#6B7280] md:text-xs">
           [{formatTimestamp(message.timestamp)}]
         </span>
-        <span className="font-mono text-[1.65rem] font-bold uppercase tracking-[0.08em] text-ink">
+        <span className="min-w-0 wrap-break-word font-mono text-sm font-bold uppercase tracking-[0.06em] text-ink md:text-[1.65rem] md:tracking-[0.08em]">
           {speakerLabel}
         </span>
       </div>
       {showWaveform && <WaveformIndicator />}
-      <p className="mt-2 font-mono text-[2rem] leading-[1.55] text-ink">
+      <p className="mt-2 wrap-break-word font-mono text-sm leading-relaxed text-ink md:text-[2rem] md:leading-[1.55]">
         {message.content}
       </p>
     </article>
@@ -102,7 +102,7 @@ export function ChatArea() {
 
   return (
     <section className="flex h-full min-h-0 w-full overflow-hidden border-[3px] border-ink bg-[#EFEFEF] shadow-brutal">
-      <div className="flex h-full min-h-0 w-full flex-col gap-5 overflow-y-auto scroll-smooth p-4">
+      <div className="flex h-full min-h-0 w-full flex-col gap-3 overflow-y-auto scroll-smooth p-3 md:gap-5 md:p-4">
         {messages.map((message) => (
           <MessageRow
             key={message.id}
@@ -117,7 +117,7 @@ export function ChatArea() {
         ))}
 
         {isLoading && (
-          <div className="px-2 pb-2 font-mono text-4xl font-bold tracking-[0.24em] text-[#6B7280]">
+          <div className="px-2 pb-2 font-mono text-2xl font-bold tracking-[0.16em] text-[#6B7280] md:text-4xl md:tracking-[0.24em]">
             ...
           </div>
         )}

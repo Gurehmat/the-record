@@ -16,14 +16,14 @@ export function RecordConfig({
   onTopicChange,
 }: RecordConfigProps) {
   return (
-    <fieldset className="border-[3px] border-ink px-5 pb-5 pt-3">
-      <legend className="px-2 font-mono text-xs font-bold uppercase tracking-[0.22em] text-ink">
+    <fieldset className="border-[3px] border-ink px-3 pb-5 pt-3 sm:px-5">
+      <legend className="px-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-ink sm:text-xs sm:tracking-[0.22em]">
         RECORD MODE PARAMETERS
       </legend>
 
       <div className="grid gap-4 md:grid-cols-2">
         <label className="space-y-2">
-          <span className="block font-mono text-xs font-bold uppercase tracking-[0.2em] text-ink">
+          <span className="block font-mono text-xs font-bold uppercase tracking-[0.14em] text-ink sm:tracking-[0.2em]">
             SPEAKER A
           </span>
           <input
@@ -31,12 +31,12 @@ export function RecordConfig({
             value={speaker1}
             onChange={(event) => onSpeaker1Change(event.target.value)}
             placeholder="ENTER NAME..."
-            className="w-full border-2 border-ink bg-parchment px-3 py-3 font-mono text-sm uppercase tracking-[0.08em] text-ink outline-none placeholder:text-ink/55 focus:border-accent"
+            className="min-h-11 w-full border-2 border-ink bg-parchment px-3 py-3 font-mono text-sm uppercase tracking-[0.08em] text-ink outline-none placeholder:text-ink/55 focus:border-accent"
           />
         </label>
 
         <label className="space-y-2">
-          <span className="block font-mono text-xs font-bold uppercase tracking-[0.2em] text-ink">
+          <span className="block font-mono text-xs font-bold uppercase tracking-[0.14em] text-ink sm:tracking-[0.2em]">
             SPEAKER B
           </span>
           <input
@@ -44,7 +44,7 @@ export function RecordConfig({
             value={speaker2}
             onChange={(event) => onSpeaker2Change(event.target.value)}
             placeholder="ENTER NAME..."
-            className="w-full border-2 border-ink bg-parchment px-3 py-3 font-mono text-sm uppercase tracking-[0.08em] text-ink outline-none placeholder:text-ink/55 focus:border-accent"
+            className="min-h-11 w-full border-2 border-ink bg-parchment px-3 py-3 font-mono text-sm uppercase tracking-[0.08em] text-ink outline-none placeholder:text-ink/55 focus:border-accent"
           />
         </label>
       </div>
@@ -52,7 +52,7 @@ export function RecordConfig({
       <div className="my-5 h-[3px] bg-accent" />
 
       <label className="space-y-2">
-        <span className="block font-mono text-xs font-bold uppercase tracking-[0.2em] text-ink">
+        <span className="block font-mono text-xs font-bold uppercase tracking-[0.14em] text-ink sm:tracking-[0.2em]">
           DEBATE TOPIC
         </span>
         <textarea

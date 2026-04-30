@@ -61,7 +61,7 @@ export function FactCheckPanel() {
   }
 
   return (
-    <section className="flex min-h-0 flex-1 flex-col border-[3px] border-ink bg-[#EFEFEF] shadow-brutal">
+    <section className="flex min-h-[220px] flex-1 flex-col border-[3px] border-ink bg-[#EFEFEF] shadow-brutal md:min-h-0">
       <header className="flex items-center justify-between border-b-[3px] border-ink bg-ink px-3 py-2">
         <p className="font-mono text-sm font-bold uppercase tracking-[0.14em] text-white">
           FACT CHECK LOG
@@ -87,13 +87,13 @@ export function FactCheckPanel() {
                 className={`relative border-2 px-3 py-3 ${isPending ? 'border-ink bg-parchment' : styles.cardClass}`}
               >
                 {isPending ? (
-                  <span className="absolute right-2 top-2 flex items-center gap-1 border-2 border-ink bg-parchment px-2 py-[2px] font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-ink">
+                  <span className="mb-2 inline-flex items-center gap-1 border-2 border-ink bg-parchment px-2 py-[2px] font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-ink sm:absolute sm:right-2 sm:top-2 sm:mb-0">
                     <LoaderCircle className="h-3 w-3 animate-spin" />
                     CHECKING
                   </span>
                 ) : (
                   <span
-                    className={`absolute right-2 top-2 border-2 bg-parchment px-2 py-[2px] font-mono text-[10px] font-bold uppercase tracking-[0.14em] ${styles.badgeClass}`}
+                    className={`mb-2 inline-flex border-2 bg-parchment px-2 py-[2px] font-mono text-[10px] font-bold uppercase tracking-[0.14em] sm:absolute sm:right-2 sm:top-2 sm:mb-0 ${styles.badgeClass}`}
                   >
                     {styles.badgeText}
                   </span>
@@ -101,14 +101,14 @@ export function FactCheckPanel() {
                 <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-ink/70">
                   [{formatTimestamp(factCheck.timestamp)}]
                 </p>
-                <p className={`pr-24 font-mono text-xs font-bold tracking-[0.08em] ${isPending ? 'text-ink' : styles.titleClass}`}>
+                <p className={`wrap-break-word font-mono text-xs font-bold tracking-[0.08em] sm:pr-24 ${isPending ? 'text-ink' : styles.titleClass}`}>
                   {factCheck.claim}
                 </p>
-                <p className="mt-2 font-mono text-xs leading-relaxed text-ink">
+                <p className="mt-2 wrap-break-word font-mono text-xs leading-relaxed text-ink">
                   {factCheck.explanation}
                 </p>
                 {factCheck.sources.length > 0 ? (
-                  <p className="mt-2 border-t border-ink/20 pt-2 font-mono text-[10px] uppercase tracking-widest text-ink/80">
+                  <p className="mt-2 wrap-break-word border-t border-ink/20 pt-2 font-mono text-[10px] uppercase tracking-[0.1em] text-ink/80 sm:tracking-widest">
                     SOURCE: {factCheck.sources.join(' | ')}
                   </p>
                 ) : null}

@@ -208,21 +208,21 @@ export function RecordDebateScreen() {
 
   return (
     <>
-      <main className="mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-[1600px] flex-col gap-3 overflow-visible px-3 py-3 lg:h-[calc(100vh-72px)] lg:overflow-hidden">
+      <main className="mx-auto flex min-h-[calc(100vh-56px)] w-full max-w-[1600px] flex-col gap-3 overflow-visible px-3 py-3 md:h-[calc(100vh-72px)] md:overflow-hidden">
         {showHttpsWarning ? (
-          <div className="border-[3px] border-accent bg-[#FDE2E2] px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.16em] text-accent shadow-brutal">
+          <div className="wrap-break-word border-[3px] border-accent bg-[#FDE2E2] px-3 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-accent shadow-brutal sm:px-4 sm:text-xs sm:tracking-[0.16em]">
             Record mode requires HTTPS - deploy to Vercel or use Chrome flag
           </div>
         ) : null}
 
         {error ? (
-          <div className="border-[3px] border-ink bg-[#FFF7B8] px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.16em] text-ink shadow-brutal">
+          <div className="wrap-break-word border-[3px] border-ink bg-[#FFF7B8] px-3 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-ink shadow-brutal sm:px-4 sm:text-xs sm:tracking-[0.16em]">
             {error}
           </div>
         ) : null}
 
-        <section className="flex flex-col overflow-visible lg:min-h-[360px] lg:basis-[55%] lg:overflow-hidden">
-          <div className="grid grid-cols-1 gap-3 overflow-visible lg:min-h-0 lg:flex-1 lg:grid-cols-2 lg:overflow-hidden">
+        <section className="flex flex-col overflow-visible md:min-h-[360px] md:basis-[55%] md:overflow-hidden">
+          <div className="grid grid-cols-1 gap-3 overflow-visible md:min-h-0 md:flex-1 md:grid-cols-2 md:overflow-hidden">
             <SpeakerColumn
               speakerName={speakerAName}
               isActive={activeSpeaker === 'speaker1' && isRecording}
@@ -257,7 +257,7 @@ export function RecordDebateScreen() {
           />
         </section>
 
-        <section className="grid grid-cols-1 gap-3 overflow-visible lg:min-h-[260px] lg:basis-[45%] lg:grid-cols-3 lg:overflow-hidden">
+        <section className="grid grid-cols-1 gap-3 overflow-visible md:min-h-[260px] md:basis-[45%] md:grid-cols-3 md:overflow-hidden">
           <RecordFallacyPanel />
           <LiveTranscriptPanel messages={transcriptMessages} />
           <RecordFactCheckPanel />
@@ -277,7 +277,7 @@ export function RecordDebateScreen() {
           <button
             type="button"
             onClick={handleBeginRecording}
-            className="inline-flex items-center justify-center border-[4px] border-ink bg-[#C8102E] px-16 py-6 font-mono text-2xl font-bold uppercase tracking-[0.18em] text-white shadow-[6px_6px_0_0_#1A1A1A] transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none"
+            className="inline-flex min-h-11 max-w-full items-center justify-center border-[4px] border-ink bg-[#C8102E] px-8 py-5 text-center font-mono text-lg font-bold uppercase tracking-[0.12em] text-white shadow-[6px_6px_0_0_#1A1A1A] transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:px-16 sm:py-6 sm:text-2xl sm:tracking-[0.18em]"
           >
             Begin Recording
           </button>

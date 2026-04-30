@@ -7,7 +7,7 @@ import { ForumInputShell } from './ForumInputShell'
 import { VoiceInputBar } from './VoiceInputBar'
 
 const modeSwitchButtonClass =
-  'inline-flex h-[52px] shrink-0 items-center gap-2 border-[3px] border-ink bg-parchment px-3 font-mono text-[11px] font-bold uppercase tracking-[0.04em] text-ink shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:gap-3 sm:px-5 sm:text-sm sm:tracking-[0.08em]'
+  'inline-flex h-[52px] w-full shrink-0 items-center justify-center gap-2 border-[3px] border-ink bg-parchment px-3 font-mono text-[11px] font-bold uppercase tracking-[0.04em] text-ink shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:w-auto sm:gap-3 sm:px-5 sm:text-sm sm:tracking-[0.08em]'
 
 export function InputBar() {
   const { sendMessage, isLoading } = useDebate()
@@ -73,7 +73,7 @@ export function InputBar() {
       <div className="flex flex-col gap-3">
         {endSessionControl}
         <form
-          className="flex items-center gap-2 sm:gap-4"
+          className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-4"
           onSubmit={(event) => {
             event.preventDefault()
             void handleSubmit()
@@ -101,13 +101,13 @@ export function InputBar() {
             }
             disabled={isInputDisabled}
             aria-label={`Message input for ${userName}`}
-            className="h-[52px] min-w-0 flex-1 border-[3px] border-ink bg-parchment px-3 font-mono text-[11px] uppercase tracking-[0.04em] text-ink outline-none placeholder:text-[#6B7280] focus:border-accent disabled:cursor-not-allowed disabled:bg-[#E8E3D9] disabled:text-ink/60 sm:px-4 sm:text-sm sm:tracking-[0.08em]"
+            className="h-[52px] min-w-0 w-full flex-1 border-[3px] border-ink bg-parchment px-3 font-mono text-[11px] uppercase tracking-[0.04em] text-ink outline-none placeholder:text-[#6B7280] focus:border-accent disabled:cursor-not-allowed disabled:bg-[#E8E3D9] disabled:text-ink/60 sm:px-4 sm:text-sm sm:tracking-[0.08em]"
           />
 
           <button
             type="submit"
             disabled={isInputDisabled}
-            className="inline-flex h-[52px] shrink-0 items-center gap-2 border-[3px] border-ink bg-ink px-4 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:bg-ink/70 sm:gap-3 sm:px-6 sm:text-sm sm:tracking-widest"
+            className="inline-flex h-[52px] w-full shrink-0 items-center justify-center gap-2 border-[3px] border-ink bg-ink px-4 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:bg-ink/70 sm:w-auto sm:gap-3 sm:px-6 sm:text-sm sm:tracking-widest"
           >
             SUBMIT
             <Send className="h-4 w-4" strokeWidth={3} />

@@ -10,7 +10,7 @@ function App() {
   const debateState = useDebateStore((state) => state.debateState)
 
   return (
-    <div className="min-h-screen bg-parchment text-ink">
+    <div className="min-h-screen overflow-x-hidden bg-parchment text-ink">
       <Navbar mode={mode} debateState={debateState} />
 
       {debateState === 'setup' ? (

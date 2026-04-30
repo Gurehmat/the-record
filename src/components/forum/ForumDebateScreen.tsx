@@ -26,17 +26,17 @@ export function ForumDebateScreen() {
   }
 
   return (
-    <main className="mx-auto flex h-[calc(100vh-72px)] w-full max-w-[1600px] flex-col overflow-hidden px-5 pt-4">
+    <main className="mx-auto flex min-h-[calc(100vh-56px)] w-full max-w-[1600px] flex-col overflow-visible px-3 pt-3 md:h-[calc(100vh-72px)] md:overflow-hidden md:px-5 md:pt-4">
       <div className="flex-shrink-0">
         <MatchupHeader />
       </div>
 
-      <section className="flex min-h-0 flex-1 gap-4 overflow-hidden py-4">
-        <div className="flex min-w-0 flex-1 overflow-hidden">
+      <section className="flex min-h-0 flex-1 flex-col gap-4 overflow-visible py-3 md:flex-row md:overflow-hidden md:py-4">
+        <div className="flex h-[60vh] min-w-0 overflow-hidden md:h-auto md:flex-1">
           <ChatArea />
         </div>
 
-        <aside className="flex min-h-0 w-[350px] flex-shrink-0 flex-col gap-4 overflow-hidden xl:w-1/3">
+        <aside className="grid min-h-0 w-full flex-shrink-0 grid-cols-1 gap-4 overflow-visible md:flex md:w-[350px] md:flex-col md:overflow-hidden xl:w-1/3">
           <FallacyPanel />
           <FactCheckPanel />
         </aside>

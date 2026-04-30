@@ -212,7 +212,7 @@ export function VoiceInputBar({ switchButtonClassName }: VoiceInputBarProps) {
   return (
     <div className="flex flex-col gap-3">
       {endSessionControl}
-    <div className="flex items-center gap-2 sm:gap-4">
+    <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-4">
       <button type="button" onClick={handleSwitchToText} className={switchButtonClassName}>
         <Keyboard className="h-4 w-4" strokeWidth={3} />
         SWITCH TO TEXT
@@ -221,7 +221,7 @@ export function VoiceInputBar({ switchButtonClassName }: VoiceInputBarProps) {
       <div className="relative min-w-0 flex-1">
         {previewMessage && (
           <div
-            className={`absolute bottom-[calc(100%+8px)] left-0 max-w-full truncate border-2 border-ink bg-parchment px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] shadow-[3px_3px_0_0_#1A1A1A] ${
+            className={`absolute bottom-[calc(100%+8px)] left-0 max-w-full whitespace-normal wrap-break-word border-2 border-ink bg-parchment px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] shadow-[3px_3px_0_0_#1A1A1A] sm:truncate ${
               error ? 'text-accent' : 'text-ink/80'
             }`}
           >
@@ -243,7 +243,7 @@ export function VoiceInputBar({ switchButtonClassName }: VoiceInputBarProps) {
               : ''
           }`}
         >
-          <span className="truncate">{buttonText}</span>
+          <span className="min-w-0 truncate">{buttonText}</span>
           <Mic className="h-5 w-5 shrink-0" strokeWidth={3} />
         </button>
       </div>

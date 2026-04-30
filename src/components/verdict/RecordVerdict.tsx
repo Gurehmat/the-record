@@ -11,17 +11,16 @@ import {
   getFactCheckBadge,
   getSessionNumber,
   getTopic,
-  normalizeSpeakerName,
 } from './verdictUtils'
 
 function MetadataLine({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex min-w-0 items-center gap-3 font-mono text-[11px] uppercase tracking-[0.08em] text-ink">
+    <div className="flex min-w-0 flex-col gap-1 font-mono text-[10px] uppercase tracking-[0.06em] text-ink sm:flex-row sm:items-center sm:gap-3 sm:text-[11px] sm:tracking-[0.08em]">
       <span className="shrink-0">{label}</span>
-      <span className="min-w-[54px] flex-1 overflow-hidden whitespace-nowrap text-ink/60">
+      <span className="hidden min-w-[54px] flex-1 overflow-hidden whitespace-nowrap text-ink/60 sm:block">
         ................................
       </span>
-      <span className="min-w-0 max-w-[52%] truncate text-right">{value}</span>
+      <span className="min-w-0 wrap-break-word font-bold sm:max-w-[52%] sm:text-right">{value}</span>
     </div>
   )
 }
@@ -45,8 +44,8 @@ function ScoreCard({
 
   return (
     <article className="border-[3px] border-ink bg-[#F8F6F0] shadow-brutal">
-      <header className="flex items-center justify-between border-b-[3px] border-ink bg-[#E8E1DC] px-4 py-3">
-        <p className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-ink">
+      <header className="flex items-center justify-between gap-3 border-b-[3px] border-ink bg-[#E8E1DC] px-4 py-3">
+        <p className="min-w-0 wrap-break-word font-mono text-xs font-bold uppercase tracking-[0.1em] text-ink sm:text-sm sm:tracking-[0.18em]">
           {speaker}
         </p>
         <UserRound className="h-5 w-5" strokeWidth={2.5} />
@@ -60,12 +59,12 @@ function ScoreCard({
         >
           {score}%
         </p>
-        <p className="mt-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-ink">
+        <p className="mt-3 text-center font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-ink sm:text-xs sm:tracking-[0.2em]">
           CREDIBILITY SCORE
         </p>
       </div>
 
-      <dl className="space-y-3 px-4 py-4 font-mono text-xs uppercase tracking-[0.12em]">
+      <dl className="space-y-3 px-4 py-4 font-mono text-xs uppercase tracking-[0.08em] sm:tracking-[0.12em]">
         <div className="flex justify-between gap-4">
           <dt>CLAIMS MADE</dt>
           <dd>{claimsMade}</dd>
@@ -81,7 +80,7 @@ function ScoreCard({
       </dl>
 
       <div
-        className={`border-t-[3px] border-ink px-4 py-4 text-center font-mono text-sm font-bold uppercase tracking-[0.16em] text-white ${
+        className={`border-t-[3px] border-ink px-4 py-4 text-center font-mono text-xs font-bold uppercase tracking-[0.1em] text-white sm:text-sm sm:tracking-[0.16em] ${
           isCredible ? 'bg-verified' : 'bg-accent'
         }`}
       >
@@ -100,10 +99,6 @@ function messageSpeakerName(
   speakerA: string,
   speakerB: string,
 ) {
-  if (message.speaker?.trim()) {
-    return normalize(message.speaker)
-  }
-
   if (message.speakerId === 'speaker1') {
     return normalize(speakerA)
   }
@@ -118,6 +113,10 @@ function messageSpeakerName(
 
   if (message.role === 'philosopher') {
     return normalize(speakerB)
+  }
+
+  if (message.speaker?.trim()) {
+    return normalize(message.speaker)
   }
 
   return ''
@@ -222,9 +221,9 @@ function FactCheckCard({ factCheck }: { factCheck: FactCheck }) {
           {badge.label}
         </span>
       </div>
-      <p className="mt-4 font-mono text-sm leading-relaxed text-ink">"{factCheck.claim}"</p>
+      <p className="mt-4 wrap-break-word font-mono text-sm leading-relaxed text-ink">"{factCheck.claim}"</p>
       <div className="my-4 border-t-2 border-dashed border-ink/35" />
-      <p className="font-mono text-[11px] uppercase leading-relaxed tracking-[0.1em] text-ink/75">
+      <p className="wrap-break-word font-mono text-[11px] uppercase leading-relaxed tracking-[0.1em] text-ink/75 sm:tracking-widest">
         SOURCE: {factCheck.sources[0] || factCheck.explanation || 'SYSTEM RECORD'}
       </p>
     </article>
@@ -233,7 +232,7 @@ function FactCheckCard({ factCheck }: { factCheck: FactCheck }) {
 
 function FallacyCard({ fallacy }: { fallacy: Fallacy }) {
   return (
-    <article className="border-l-[6px] border-accent border-y-[3px] border-r-[3px] border-ink bg-[#F8F6F0] p-4 shadow-brutal">
+    <article className="border-l-[6px] border-l-accent border-y-[3px] border-y-ink border-r-[3px] border-r-ink bg-[#F8F6F0] p-4 shadow-brutal">
       <div className="flex flex-wrap items-center gap-3">
         <span className="border-2 border-ink bg-parchment px-2 py-1 font-mono text-xs font-bold">
           [{formatClock(fallacy.timestamp, false)}]
@@ -245,11 +244,11 @@ function FallacyCard({ fallacy }: { fallacy: Fallacy }) {
           {fallacy.type}
         </span>
       </div>
-      <blockquote className="mt-4 font-mono text-sm italic leading-relaxed text-ink">
+      <blockquote className="mt-4 wrap-break-word font-mono text-sm italic leading-relaxed text-ink">
         "{fallacy.quote}"
       </blockquote>
       <div className="my-4 border-t-2 border-dashed border-ink/35" />
-      <p className="font-mono text-[11px] uppercase leading-relaxed tracking-[0.08em] text-ink/80">
+      <p className="wrap-break-word font-mono text-[11px] uppercase leading-relaxed tracking-[0.08em] text-ink/80">
         EXPLANATION: {fallacy.description}
       </p>
     </article>
@@ -265,7 +264,7 @@ function Section({
 }) {
   return (
     <section className="mt-12">
-      <h2 className="font-display text-2xl font-bold uppercase tracking-normal text-ink">
+      <h2 className="wrap-break-word font-display text-xl font-bold uppercase tracking-normal text-ink sm:text-2xl">
         {title}
       </h2>
       <div className="mt-5 h-[3px] bg-ink" />
@@ -274,7 +273,7 @@ function Section({
   )
 }
 
-export function RecordVerdict({ onDownloadPdf, onShareLink }: VerdictActions) {
+export function RecordVerdict({ onDownloadPdf, onShareLink, shareLabel }: VerdictActions) {
   const config = useDebateStore((state) => state.config)
   const messages = useDebateStore((state) => state.messages)
   const factChecks = useDebateStore((state) => state.factChecks)
@@ -284,8 +283,12 @@ export function RecordVerdict({ onDownloadPdf, onShareLink }: VerdictActions) {
   const reset = useDebateStore((state) => state.reset)
   const setDebateState = useDebateStore((state) => state.setDebateState)
 
-  const speakerA = normalizeSpeakerName(config.speaker1, 'SPEAKER A')
-  const speakerB = normalizeSpeakerName(config.speaker2, 'SPEAKER B')
+  const speakerA = config.speaker1.trim()
+    ? config.speaker1.trim().toUpperCase()
+    : 'SPEAKER A'
+  const speakerB = config.speaker2.trim()
+    ? config.speaker2.trim().toUpperCase()
+    : 'SPEAKER B'
   const speakerAStats = getRecordSpeakerStats({
     speaker: speakerA,
     speakerId: 'speaker1',
@@ -327,13 +330,13 @@ export function RecordVerdict({ onDownloadPdf, onShareLink }: VerdictActions) {
   }
 
   return (
-    <main className="mx-auto w-full max-w-[900px] px-5 pb-16 pt-9">
-      <h1 className="text-center font-display text-5xl font-bold uppercase tracking-normal text-ink sm:text-6xl">
+    <main className="mx-auto w-full max-w-[900px] px-4 pb-12 pt-7 sm:px-5 sm:pb-16 sm:pt-9">
+      <h1 className="text-center font-display text-4xl font-bold uppercase tracking-normal text-ink sm:text-6xl">
         VERDICT
       </h1>
       <div className="mx-auto mt-7 h-[3px] w-full bg-ink" />
 
-      <section className="mt-6 grid gap-x-10 gap-y-3 border-[3px] border-ink bg-[#F8F6F0] p-5 shadow-brutal sm:grid-cols-2">
+      <section className="mt-6 grid gap-x-10 gap-y-3 border-[3px] border-ink bg-[#F8F6F0] p-4 shadow-brutal sm:grid-cols-2 sm:p-5">
         <MetadataLine label="CASE NO." value={getSessionNumber(messages)} />
         <MetadataLine label="DATE" value={formatDate()} />
         <MetadataLine
@@ -370,11 +373,11 @@ export function RecordVerdict({ onDownloadPdf, onShareLink }: VerdictActions) {
         )}
       </Section>
 
-      <div className="mt-16 flex flex-wrap justify-center gap-4">
+      <div className="mt-12 flex flex-col justify-center gap-3 sm:mt-16 sm:flex-row sm:flex-wrap sm:gap-4">
         <button
           type="button"
           onClick={onDownloadPdf}
-          className="inline-flex items-center gap-3 border-[3px] border-ink bg-ink px-5 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-white shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none"
+          className="inline-flex min-h-11 w-full items-center justify-center gap-3 border-[3px] border-ink bg-ink px-4 py-4 text-center font-mono text-xs font-bold uppercase tracking-[0.1em] text-white shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:w-auto sm:px-5 sm:tracking-[0.16em]"
         >
           <Download className="h-4 w-4" strokeWidth={2.8} />
           DOWNLOAD AS PDF
@@ -382,22 +385,22 @@ export function RecordVerdict({ onDownloadPdf, onShareLink }: VerdictActions) {
         <button
           type="button"
           onClick={onShareLink}
-          className="inline-flex items-center gap-3 border-[3px] border-ink bg-parchment px-5 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-ink shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none"
+          className="inline-flex min-h-11 w-full items-center justify-center gap-3 border-[3px] border-ink bg-parchment px-4 py-4 text-center font-mono text-xs font-bold uppercase tracking-[0.1em] text-ink shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:w-auto sm:px-5 sm:tracking-[0.16em]"
         >
           <Share2 className="h-4 w-4" strokeWidth={2.8} />
-          SHARE LINK
+          {shareLabel}
         </button>
         <button
           type="button"
           onClick={handleNewSession}
-          className="inline-flex items-center gap-3 border-[3px] border-ink bg-ink px-5 py-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-white shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none"
+          className="inline-flex min-h-11 w-full items-center justify-center gap-3 border-[3px] border-ink bg-ink px-4 py-4 text-center font-mono text-xs font-bold uppercase tracking-[0.1em] text-white shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:w-auto sm:px-5 sm:tracking-[0.16em]"
         >
           <PlusCircle className="h-4 w-4" strokeWidth={2.8} />
           NEW SESSION
         </button>
       </div>
 
-      <footer className="mt-20 border-t-[3px] border-ink pt-8 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-ink/50">
+      <footer className="mt-16 wrap-break-word border-t-[3px] border-ink pt-8 text-center font-mono text-[10px] uppercase tracking-[0.12em] text-ink/50 sm:mt-20 sm:tracking-[0.2em]">
         ON THE RECORD - GENERATED BY GEMINI + ELEVENLABS - CONHACKS 2026
       </footer>
     </main>

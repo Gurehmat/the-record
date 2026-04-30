@@ -13,14 +13,14 @@ export function ModeSelector({ mode, onSelectMode }: ModeSelectorProps) {
       <button
         type="button"
         onClick={() => onSelectMode('record')}
-        className={`border-[3px] p-5 text-left shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none ${
+        className={`min-h-11 border-[3px] p-4 text-left shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:p-5 ${
           mode === 'record'
             ? 'border-ink bg-accent text-white'
             : 'border-ink bg-parchment text-ink'
         }`}
       >
         <div className="mb-4 flex items-start justify-between gap-3">
-          <p className="font-display text-2xl font-bold uppercase tracking-[0.12em]">
+          <p className="wrap-break-word font-display text-xl font-bold uppercase tracking-[0.08em] sm:text-2xl sm:tracking-[0.12em]">
             RECORD MODE
           </p>
           <Mic className="h-6 w-6 shrink-0" strokeWidth={2.5} />
@@ -30,7 +30,7 @@ export function ModeSelector({ mode, onSelectMode }: ModeSelectorProps) {
             mode === 'record' ? 'bg-white/85' : 'bg-accent'
           }`}
         />
-        <p className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.2em]">
+        <p className="mb-3 wrap-break-word font-mono text-[11px] font-bold uppercase tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
           TWO HUMANS // LIVE DEBATE
         </p>
         <p className="font-mono text-[13px] leading-5">
@@ -42,14 +42,14 @@ export function ModeSelector({ mode, onSelectMode }: ModeSelectorProps) {
       <button
         type="button"
         onClick={() => onSelectMode('forum')}
-        className={`border-[3px] p-5 text-left shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none ${
+        className={`min-h-11 border-[3px] p-4 text-left shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:p-5 ${
           mode === 'forum'
             ? 'border-ink bg-accent text-white'
             : 'border-ink bg-parchment text-ink'
         }`}
       >
         <div className="mb-4 flex items-start justify-between gap-3">
-          <p className="font-display text-2xl font-bold uppercase tracking-[0.12em]">
+          <p className="wrap-break-word font-display text-xl font-bold uppercase tracking-[0.08em] sm:text-2xl sm:tracking-[0.12em]">
             FORUM MODE
           </p>
           <SearchCheck className="h-6 w-6 shrink-0" strokeWidth={2.5} />
@@ -59,7 +59,7 @@ export function ModeSelector({ mode, onSelectMode }: ModeSelectorProps) {
             mode === 'forum' ? 'bg-white/85' : 'bg-accent'
           }`}
         />
-        <p className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.2em]">
+        <p className="mb-3 wrap-break-word font-mono text-[11px] font-bold uppercase tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
           1V1 // VS A PHILOSOPHER
         </p>
         <p className="font-mono text-[13px] leading-5">

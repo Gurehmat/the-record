@@ -24,7 +24,7 @@ export function SpeakerToggle({
   const speakerBLabel = speakerBName.trim().length > 0 ? speakerBName : 'Speaker B'
 
   const speakerButtonClass = (speaker: 'speaker1' | 'speaker2') =>
-    `inline-flex min-w-[12rem] flex-[1_1_12rem] items-center justify-center gap-1 border-[3px] border-ink px-2 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.08em] shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:gap-2 sm:px-4 sm:text-xs sm:tracking-[0.16em] ${
+    `inline-flex min-h-11 min-w-0 flex-[1_1_100%] items-center justify-center gap-1 border-[3px] border-ink px-2 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.08em] shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:min-w-[12rem] sm:flex-[1_1_12rem] sm:gap-2 sm:px-4 sm:text-xs sm:tracking-[0.16em] ${
       activeSpeaker === speaker && isRecording
         ? 'bg-accent text-white'
         : 'bg-parchment text-ink'
@@ -46,7 +46,7 @@ export function SpeakerToggle({
       <button
         type="button"
         onClick={isRecording ? onPauseRecording : onResumeRecording}
-        className={`inline-flex shrink-0 items-center justify-center gap-1 border-[3px] border-ink px-3 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.08em] shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:gap-2 sm:px-5 sm:text-xs sm:tracking-[0.16em] ${
+        className={`inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-1 border-[3px] border-ink px-3 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.08em] shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:w-auto sm:gap-2 sm:px-5 sm:text-xs sm:tracking-[0.16em] ${
           isRecording ? 'bg-ink text-white' : 'bg-parchment text-ink'
         }`}
       >
