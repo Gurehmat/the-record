@@ -18,8 +18,10 @@ export function SpeakerToggle({
   onPauseRecording,
   onResumeRecording,
 }: SpeakerToggleProps) {
-  const speakerAName = useDebateStore((state) => state.config.speaker1.trim() || 'Speaker A')
-  const speakerBName = useDebateStore((state) => state.config.speaker2.trim() || 'Speaker B')
+  const speakerAName = useDebateStore((state) => state.config.speaker1)
+  const speakerBName = useDebateStore((state) => state.config.speaker2)
+  const speakerALabel = speakerAName.trim().length > 0 ? speakerAName : 'Speaker A'
+  const speakerBLabel = speakerBName.trim().length > 0 ? speakerBName : 'Speaker B'
 
   const speakerButtonClass = (speaker: 'speaker1' | 'speaker2') =>
     `inline-flex min-w-[12rem] flex-[1_1_12rem] items-center justify-center gap-1 border-[3px] border-ink px-2 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.08em] shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:gap-2 sm:px-4 sm:text-xs sm:tracking-[0.16em] ${
@@ -29,22 +31,22 @@ export function SpeakerToggle({
     }`
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-shrink-0 flex-wrap items-stretch justify-center gap-2 py-3 sm:gap-3">
+    <div className="mx-auto flex w-full max-w-3xl shrink-0 flex-wrap items-stretch justify-center gap-2 py-3 sm:gap-3">
       <button
         type="button"
         onClick={() => onSelectSpeaker('speaker1')}
         className={speakerButtonClass('speaker1')}
       >
-        <UserRound className="h-4 w-4 flex-shrink-0" strokeWidth={2.8} />
-        <span className="min-w-0 whitespace-normal break-words text-center leading-tight">
-          {speakerAName}
+        <UserRound className="h-4 w-4 shrink-0" strokeWidth={2.8} />
+        <span className="whitespace-normal wrap-break-word text-center leading-tight">
+          {speakerALabel}
         </span>
       </button>
 
       <button
         type="button"
         onClick={isRecording ? onPauseRecording : onResumeRecording}
-        className={`inline-flex flex-shrink-0 items-center justify-center gap-1 border-[3px] border-ink px-3 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.08em] shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:gap-2 sm:px-5 sm:text-xs sm:tracking-[0.16em] ${
+        className={`inline-flex shrink-0 items-center justify-center gap-1 border-[3px] border-ink px-3 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.08em] shadow-brutal transition-all duration-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#1A1A1A] active:translate-x-1 active:translate-y-1 active:shadow-none sm:gap-2 sm:px-5 sm:text-xs sm:tracking-[0.16em] ${
           isRecording ? 'bg-ink text-white' : 'bg-parchment text-ink'
         }`}
       >
@@ -61,9 +63,9 @@ export function SpeakerToggle({
         onClick={() => onSelectSpeaker('speaker2')}
         className={speakerButtonClass('speaker2')}
       >
-        <UserRound className="h-4 w-4 flex-shrink-0" strokeWidth={2.8} />
-        <span className="min-w-0 whitespace-normal break-words text-center leading-tight">
-          {speakerBName}
+        <UserRound className="h-4 w-4 shrink-0" strokeWidth={2.8} />
+        <span className="whitespace-normal wrap-break-word text-center leading-tight">
+          {speakerBLabel}
         </span>
       </button>
     </div>

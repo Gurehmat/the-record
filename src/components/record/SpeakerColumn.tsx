@@ -76,12 +76,12 @@ export function SpeakerColumn({
 
   return (
     <section className="flex min-h-[280px] flex-1 flex-col border-[3px] border-ink bg-parchment shadow-brutal lg:min-h-0">
-      <header className="flex items-center justify-between border-b-[3px] border-ink px-5 py-3">
-        <h2 className="min-w-0 truncate font-display text-2xl font-bold uppercase tracking-[0.14em] text-ink">
+      <header className="flex items-start justify-between gap-3 border-b-[3px] border-ink px-5 py-3">
+        <h2 className="flex-1 whitespace-normal wrap-break-word font-display text-2xl font-bold uppercase leading-tight tracking-[0.14em] text-ink">
           {speakerName}
         </h2>
         <div
-          className={`flex flex-shrink-0 items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] ${
+          className={`flex shrink-0 items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] ${
             isActive ? 'text-verified' : 'text-ink/45'
           }`}
         >
@@ -95,7 +95,7 @@ export function SpeakerColumn({
         </div>
       </header>
 
-      <div className="flex-shrink-0 px-5 pt-4">
+      <div className="shrink-0 px-5 pt-4">
         <AudioWaveform isActive={isActive} />
       </div>
 
@@ -111,7 +111,7 @@ export function SpeakerColumn({
             {messages.map((message) => (
               <article
                 key={message.id}
-                className={`border-l-[4px] px-3 py-2 font-mono text-sm leading-relaxed text-ink ${
+                className={`border-l-4 px-3 py-2 font-mono text-sm leading-relaxed text-ink ${
                   message.isFlagged
                     ? 'border-warning bg-[#FFFBEB] font-semibold'
                     : message.id === latestMessageId
@@ -126,7 +126,7 @@ export function SpeakerColumn({
               </article>
             ))}
             {hasInterimText ? (
-              <article className="border-l-[4px] border-ink/25 bg-[#EFEFEF] px-3 py-2 font-mono text-sm italic leading-relaxed text-ink/50">
+              <article className="border-l-4 border-ink/25 bg-[#EFEFEF] px-3 py-2 font-mono text-sm italic leading-relaxed text-ink/50">
                 {interimText}
               </article>
             ) : null}
@@ -134,7 +134,7 @@ export function SpeakerColumn({
         )}
       </div>
 
-      <footer className="flex flex-shrink-0 justify-end px-5 pb-3">
+      <footer className="flex shrink-0 justify-end px-5 pb-3">
         <div
           className={`inline-flex items-center gap-2 border-[3px] border-ink px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.18em] ${
             isActive ? 'bg-ink text-white' : 'bg-parchment text-ink'
