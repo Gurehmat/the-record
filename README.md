@@ -65,7 +65,7 @@ React 18, TypeScript, Vite, Tailwind CSS, Zustand, Gemini 2.5 Flash, ElevenLabs 
 - **Best UI/UX**: cohesive neo-brutalist courtroom design system carried across setup, debate, intervention modal, and verdict experiences.
 
 ## Try It
-Live: [Vercel URL here]  
+Live: [https://the-record-rosy.vercel.app]  
 Repo: [github.com/Gurehmat/the-record](https://github.com/Gurehmat/the-record)
 
 Built solo by Gurehmat Chahal at ConHacks 2026.
