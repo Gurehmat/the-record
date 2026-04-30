@@ -1,41 +1,34 @@
-const checks = [
-  'TAILWIND ACTIVE',
-  'DESIGN TOKENS LOADED',
-  'TYPOGRAPHY WIRED',
-  'READY FOR PROCEEDINGS',
-]
+import { ForumDebateScreen } from './components/forum/ForumDebateScreen'
+import { RecordDebateScreen } from './components/record/RecordDebateScreen'
+import { SetupScreen } from './components/setup/SetupScreen'
+import { Navbar } from './components/shared/Navbar'
+import { VerdictScreen } from './components/verdict/VerdictScreen'
+import { useDebateStore } from './store/useDebateStore'
 
 function App() {
+  const mode = useDebateStore((state) => state.config.mode)
+  const debateState = useDebateStore((state) => state.debateState)
+
   return (
-    <main className="min-h-screen bg-parchment text-ink">
-      <div className="mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center justify-center gap-8 px-6 py-10">
-        <header className="text-center">
-          <h1 className="font-display text-6xl font-bold uppercase tracking-[0.2em] sm:text-7xl md:text-8xl">
-            THE RECORD
-          </h1>
-          <p className="mt-4 font-mono text-sm uppercase tracking-[0.15em] sm:text-base">
-            SYSTEM CHECK // ALL SYSTEMS NOMINAL
+    <div className="min-h-screen bg-parchment text-ink">
+      <Navbar mode={mode} debateState={debateState} />
+
+      {debateState === 'setup' ? (
+        <SetupScreen />
+      ) : debateState === 'verdict' ? (
+        <VerdictScreen />
+      ) : debateState === 'live' && mode === 'record' ? (
+        <RecordDebateScreen />
+      ) : debateState === 'live' && mode === 'forum' ? (
+        <ForumDebateScreen />
+      ) : (
+        <main className="mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-6xl items-center justify-center px-5">
+          <p className="border-[3px] border-ink bg-parchment p-6 font-mono text-xl font-bold uppercase tracking-wider shadow-brutal">
+            Debate coming soon...
           </p>
-        </header>
-
-        <section className="w-full max-w-2xl rounded-sm border-[3px] border-ink bg-parchment p-6 shadow-brutal">
-          <ul className="space-y-3 font-mono text-sm uppercase tracking-[0.08em] sm:text-base">
-            {checks.map((item) => (
-              <li key={item} className="text-verified">
-                {'\u2713'} {item}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <button
-          type="button"
-          className="rounded-sm border-[3px] border-ink bg-ink px-8 py-3 font-display text-sm font-bold uppercase tracking-[0.12em] text-parchment shadow-brutal-red transition-transform active:translate-x-1 active:translate-y-1 active:shadow-none"
-        >
-          BEGIN BUILD {'\u2192'}
-        </button>
-      </div>
-    </main>
+        </main>
+      )}
+    </div>
   )
 }
 

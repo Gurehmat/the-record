@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
 body {
   background-color: #F5F1E8;
@@ -11,7 +9,229 @@ body {
 }
 
 /* Disable text smoothing for crisp brutalist look */
-* {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.record-paper-grain {
+  pointer-events: none;
+  opacity: 0.04;
+  background-image:
+    repeating-radial-gradient(
+      circle at 0 0,
+      rgba(26, 26, 26, 0.8) 0,
+      rgba(26, 26, 26, 0.8) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 11px,
+      rgba(26, 26, 26, 0.5) 12px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 17px,
+      rgba(26, 26, 26, 0.35) 18px
+    );
+  background-size: 13px 13px, 23px 23px, 29px 29px;
+  mix-blend-mode: multiply;
+}
+
+.record-title-in {
+  animation: record-title-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.record-fade-in {
+  animation: record-fade-in 420ms ease-out 140ms both;
+}
+
+.record-panel-in {
+  animation: record-panel-in 260ms ease-out both;
+}
+
+.record-ready-pulse {
+  animation: record-ready-pulse 1800ms ease-in-out infinite;
+}
+
+.tts-wave-bar {
+  transform-origin: bottom;
+  animation: tts-wave-pulse 720ms ease-in-out infinite;
+}
+
+.voice-recording-pulse {
+  animation: voice-recording-pulse 900ms ease-in-out infinite;
+}
+
+.voice-wave-bar {
+  transform-origin: bottom;
+  animation: voice-wave-pulse 640ms ease-in-out infinite;
+}
+
+.record-wave-bar {
+  height: 100%;
+  min-height: 12px;
+  transform: scaleY(0.2);
+  transform-origin: bottom;
+}
+
+.record-wave-bar[data-active='true'] {
+  animation: record-wave-pulse var(--record-wave-duration) ease-in-out infinite;
+  animation-delay: var(--record-wave-delay);
+}
+
+.record-on-air-pulse {
+  animation: record-on-air-pulse 900ms steps(2, end) infinite;
+}
+
+.record-score-flash {
+  animation: record-score-flash 700ms ease-out both;
+}
+
+@keyframes record-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes record-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes record-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes record-ready-pulse {
+  0%,
+  100% {
+    box-shadow: 4px 4px 0 0 #1A1A1A;
+  }
+
+  50% {
+    box-shadow: 7px 7px 0 0 #1A1A1A;
+  }
+}
+
+@keyframes tts-wave-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.45);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scaleY(1.25);
+    opacity: 1;
+  }
+}
+
+@keyframes voice-recording-pulse {
+  0%,
+  100% {
+    box-shadow: 4px 4px 0 0 #1A1A1A;
+    opacity: 1;
+  }
+
+  50% {
+    box-shadow: 4px 4px 0 0 #1A1A1A;
+    opacity: 0.82;
+  }
+}
+
+@keyframes voice-wave-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.75;
+  }
+
+  50% {
+    transform: scaleY(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes record-wave-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.2);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes record-on-air-pulse {
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.65);
+    background-color: transparent;
+  }
+
+  50% {
+    border-color: #C8102E;
+    background-color: rgba(200, 16, 46, 0.18);
+  }
+}
+
+@keyframes record-score-flash {
+  0% {
+    box-shadow: 0 0 0 0 #C8102E;
+    transform: translate(0, 0);
+  }
+
+  35% {
+    box-shadow: 4px 4px 0 0 #C8102E;
+    transform: translate(-1px, -1px);
+  }
+
+  100% {
+    box-shadow: none;
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .record-title-in,
+  .record-fade-in,
+  .record-panel-in,
+  .record-ready-pulse,
+  .tts-wave-bar,
+  .voice-recording-pulse,
+  .voice-wave-bar,
+  .record-wave-bar,
+  .record-on-air-pulse,
+  .record-score-flash {
+    animation: none;
+  }
 }
